@@ -7,117 +7,80 @@
 
 int main() {
 
-  // struct node * head = NULL;
-  //
-  char name[100] = "Thriller";
-  char artist[100] = "Michael Jackson";
-  // printf("Insert Thriller by Michael Jackson\n");
-  // head = insert_in_order(head, name, artist);
-  //
-  // strcpy(name, "Rocket Man");
-  // strcpy(artist, "Elton John");
-  // printf("Insert Rocket Man by Elton John\n");
-  // head = insert_in_order(head, name, artist);
-  //
-  // strcpy(name, "Tiny Dancer");
-  // strcpy(artist, "Elton John");
-  // printf("Insert Tiny Dancer by Elton John\n");
-  // head = insert_in_order(head, name, artist);
-  //
-  // strcpy(name, "Time");
-  // strcpy(artist, "Pink Floyd");
-  // printf("Insert Time by Pink Floyd\n");
-  // head = insert_in_order(head, name, artist);
-  //
-  // strcpy(name, "Stressed Out");
-  // strcpy(artist, "21 Pilots");
-  // printf("Insert Stressed Out by 21 Pilots\n");
-  // head = insert_in_order(head, name, artist);
-  //
-  // strcpy(name, "Numb");
-  // strcpy(artist, "Linkin Park");
-  // printf("Insert Numb by Linkin Park\n");
-  // head = insert_in_order(head, name, artist);
+  printf("Testing Linked List\n========================\n");
+  struct node * head = NULL;
 
-  // printf("\n");
-  // print_list(head);
-  //
-  // strcpy(name, "Stressed Out");
-  // strcpy(artist, "21 Pilots");
-  // printf("Removing Stressed Out by 21 Pilots\n");
-  // head = remove_node(head, name, artist);
-  //
-  // print_list(head);
-  //
-  // strcpy(name, "Numb");
-  // strcpy(artist, "Linkin Park");
-  // printf("Removing Numb by Linkin Park\n");
-  // head = remove_node(head, name, artist);
-  //
-  // print_list(head);
-  //
-  // strcpy(name, "Tiny Dancer");
-  // strcpy(artist, "Elton John");
-  // printf("Printing Tiny Dancer by Elton John and following elements\n");
-  //
-  // print_list(return_song(head, name, artist));
-  //
-  // strcpy(artist, "Michael Jackson");
-  // printf("Printing first song by Michael Jackson\n");
-  //
-  // print_list(return_first_of_artist(head, artist));
-  //
-  // printf("Printing random node and following nodes\n");
-  // print_list(return_random(head));
-  //
-  // printf("Freeing list\n");
-  // head = free_list(head);
+  head = insert_in_order(head, "Thriller", "Michael Jackson");
+  head = insert_in_order(head, "Rocket Man", "Elton John");
+  head = insert_in_order(head, "Tiny Dancer", "Elton John");
+  head = insert_in_order(head, "Time", "Pink Floyd");
+  head = insert_in_order(head, "Stressed Out", "21 Pilots");
+  head = insert_in_order(head, "Numb", "Linkin Park");
 
-  printf("Testing Lib Functions\n\n");
+  printf("\nPrinting print_list: \n");
+  print_list(head);
+
+  printf("\nTesting print_node(helper) and return_song: (using Tiny Dancer by Elton John)\n");
+  print_node(return_song(head, "Tiny Dancer", "Elton John"));
+
+  printf("\nTesting return_first_of_artist: (using Elton John)\n");
+  print_node(return_first_of_artist(head, "Elton John"));
+
+  printf("\nTesting return_random:\n");
+  print_node(return_random(head));
+
+  printf("\nTesting remove_node (using Thriller by Michael Jackson and Time by Pink Floyd)");
+  printf("\nPrinting list after removals: \n");
+  head = remove_node(head, "Thriller", "Michael Jackson");
+  head = remove_node(head, "Time", "Pink Floyd");
+  print_list(head);
+
+  printf("\nTesting free_list\nPrinting list after freeing:\n");
+  head = free_list(head);
+  print_list(head);
+
+  printf("Testing Linked List\n========================\n");
+
   struct node * library[216];
-
   int i;
-  for (i = 0; i < 27; i++) {
+  for (i = 0; i < 27; i++)
     library[i] = 0;
-  }
-  printf("%p\n", library);
-  add_song(library, name, artist);
 
-  printf("%s\n", library[12]->artist);
+  add_song(library, "Thriller", "Michael Jackson");
+  add_song(library, "Beat It", "Michael Jackson");
+  add_song(library, "Outro", "M83");
+  add_song(library, "Rocket Man", "Elton John");
+  add_song(library, "Tiny Dancer", "Elton John");
+  add_song(library, "Stressed Out", "21 Pilots");
 
-  char name2[100] = "Beat It";
-  char artist2[100] = "Michael Jackson";
+  printf("\nTesting print_library: \n");
+  print_library(library);
 
-  add_song(library, name2, artist2);
-
-  print_list(library[12]);
-
-  print_list(song_from_library(library, name, artist));
-
+  printf("\nTesting print_all_from_letter (using m):\n");
   print_all_from_letter(library, "m");
 
+  printf("\nTesting song_from_library (using Tiny Dancer by Elton John):\n");
+  print_node(song_from_library(library, "Tiny Dancer", "Elton John"));
+
+  printf("\nTesting print_artist: (using Elton John) \n");
+  print_artist(library, "Elton John");
+
+  printf("\nTesting print_artist: (using Lil Pump) \n");
+  print_artist(library, "Lil Punp");
+
+  printf("\nTesting first_of_artist: \n");
+  print_list(first_of_artist(library, "M83"));
+
+  printf("\nTesting delete_song (using Gucci Gang by Lil Pump)\n");
+  printf("Testing delete_song (Thriller by Michael Jackson)\n");
+  printf("Printing list after removals: \n");
   print_library(library);
 
-  // printf("Freeing library\n");
-  // free_library(library);
-
-  // print_library(library);
-
-  // delete_song(library, name, artist);
-
-  print_library(library);
-
-  char name3[100] = "Elton John";
-
-  find_artist(library, name3);
-
-  char artist3[100] = "Elton John";
-  char name4[100] = "Tiny Dancer";
-
-  add_song(library, name4, artist3);
-
-  printf("printing artist\n");
-  print_artist(library, artist2);
-
+  printf("Testing shuffle: \n");
   shuffle(library);
+
+  printf("\nTesting free_library: \n");
+  free_library(library);
+  printf("Printing list after freeing: \n");
+  print_library(library);
 }
