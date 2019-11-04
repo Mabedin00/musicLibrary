@@ -30,12 +30,13 @@ struct node * insert_front(struct node * node, char newName[100], char newArtist
 }
 
 struct node * free_list(struct node * head) {
-  if (head != NULL) {
-    free_list(head->next);
-    free(head);
+  struct node * temp;
+  while (head != NULL) {
+    temp = head;
+    head = head->next;
+    free(temp);
   }
-  else
-    return head;
+  return head;
 }
 
 struct node * remove_node(struct node * front, char newName[100], char newArtist[100]) {

@@ -34,7 +34,6 @@ int main() {
   head = remove_node(head, "Thriller", "Michael Jackson");
   head = remove_node(head, "Time", "Pink Floyd");
   print_list(head);
-
   printf("\nTesting free_list\nPrinting list after freeing:\n");
   head = free_list(head);
   print_list(head);
